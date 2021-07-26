@@ -1,5 +1,7 @@
 # Multi label learning on VOC2008 attributes
 
+Chinese can refer my csdn blog [https://blog.csdn.net/Exploer_TRY/article/details/118910514?spm=1001.2014.3001.5501](https://blog.csdn.net/Exploer_TRY/article/details/118910514?spm=1001.2014.3001.5501) for more information.
+
 ## 1. Datasets
 
 VOC2008: [https://www.kaggle.com/sulaimannadeem/pascal-voc-2008](https://www.kaggle.com/sulaimannadeem/pascal-voc-2008)
