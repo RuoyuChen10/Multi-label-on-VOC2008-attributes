@@ -1,0 +1,37 @@
+VERSION: 1
+BACKBONE: ResNet101
+PRETRAINED: ./models/ckpt/resnet101-5d3b4d8f.pth
+
+STRATEGY: A
+
+BATCH_SIZE: 256
+OPTIMIZER: SGD
+LEARNING_RATE: 0.01
+
+EPOCH: 10000
+
+LOSS_FUNCTION: Multi
+# GPU_DEVICE: "0,1,2,3"
+
+DATASET_ROOT: /exdata/RuoyuChen/describing_objects_by_their_attributes/Pascal_Dataset/SIGImages
+DATASET_LIST_TRAIN: /exdata/RuoyuChen/describing_objects_by_their_attributes/attribute_data/apascal_train.txt
+DATASET_LIST_TEST: /exdata/RuoyuChen/describing_objects_by_their_attributes/attribute_data/apascal_test.txt
+ATTRIBUTE_NUM: 64
+CLASS_NUM: 32
+CLASS_NAME: [aeroplane,bicycle,bird,boat,bottle,
+             bus,car,cat,chair,cow,
+             diningtable,dog,horse,motorbike,person,
+             pottedplant,sheep,sofa,train,tvmonitor,
+             donkey,monkey,goat,wolf,jetski,
+             zebra,centaur,mug,statue,building,
+             bag,carriage]
+ATTRIBUTE_NAME: [2D Boxy,3D Boxy,Round,Vert Cyl,Horiz Cyl,Occluded,Tail,Beak,Head,Ear,
+                 Snout,Nose,Mouth,Hair,Face,Eye,Torso,Hand,Arm,Leg,
+                 Foot/Shoe,Wing,Propeller,Jet engine,Window,Row Wind,Wheel,Door,Headlight,Taillight,
+                 Side mirror,Exhaust,Pedal,Handlebars,Engine,Sail,Mast,Text,Label,Furn. Leg,
+                 Furn. Back,Furn. Seat,Furn. Arm,Horn,Rein,Saddle,Leaf,Flower,Stem/Trunk,Pot,
+                 Screen,Skin,Metal,Plastic,Wood,Cloth,Furry,Glass,Feather,Wool,
+                 Clear,Shiny,Vegetation,Leather]
+
+CKPT_SAVE_PATH: ./checkpoint/
+EVALUATION_SAVE_PATH: ./results/

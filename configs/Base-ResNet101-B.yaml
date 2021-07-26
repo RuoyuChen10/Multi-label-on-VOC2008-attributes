@@ -1,0 +1,62 @@
+VERSION: 2
+BACKBONE: ResNet101
+PRETRAINED: ./models/ckpt/resnet101-5d3b4d8f.pth
+
+STRATEGY: B
+
+BATCH_SIZE: 128
+OPTIMIZER: SGD
+LEARNING_RATE: 0.01
+
+EPOCH: 10000
+
+LOSS_FUNCTION: BCELoss
+# ATTR_LOSS_WEIGHT: [
+#   0,0,0,0,0,1,0,0,1,0,
+#   0,0,0,0,0,0,0,0,0,0,
+#   0,0,0,0,0,0,0,0,0,0,
+#   0,0,0,0,0,0,0,0,0,0,
+#   0,0,0,0,0,0,0,0,0,0,
+#   0,0,0,0,0,0,0,0,0,0,
+#   0,0,0,0
+# ]
+POS_LOSS_WEIGHT: [
+  12.69, 5.29, 79.25, 12.38, 21.48,
+  0.71, 11.58, 29.05, 1.04, 2.22,
+  8.81, 3.17, 3.46, 2.81, 2.99,
+  1.98, 1.30, 3.76, 2.66, 2.17,
+  3.82, 18.75, 110.23, 75.39, 7.72,
+  26.45, 6.69, 13.00, 15.47, 24.77,
+  16.96, 45.28, 57.7, 25.2, 78.25,
+  112.21, 89.57, 26.45, 31.68, 20.42,
+  11.91, 16.76, 26.21, 332.68, 68.67,
+  106.46, 30.7, 95.06, 61.16, 31.68,
+  49.72, 1.94, 3.48, 9.29, 12.90,
+  1.45, 8.74, 12.49, 24.67, 53.19,
+  71.05, 5.17, 28.49, 451.86
+]
+# GPU_DEVICE: "0,1,2,3"
+
+DATASET_ROOT: /exdata/RuoyuChen/describing_objects_by_their_attributes/Pascal_Dataset/JPEGImages
+DATASET_LIST_TRAIN: /exdata/RuoyuChen/describing_objects_by_their_attributes/attribute_data/apascal_train.txt
+DATASET_LIST_TEST: /exdata/RuoyuChen/describing_objects_by_their_attributes/attribute_data/apascal_test.txt
+ATTRIBUTE_NUM: 64
+CLASS_NUM: 32
+CLASS_NAME: [aeroplane,bicycle,bird,boat,bottle,
+             bus,car,cat,chair,cow,
+             diningtable,dog,horse,motorbike,person,
+             pottedplant,sheep,sofa,train,tvmonitor,
+             donkey,monkey,goat,wolf,jetski,
+             zebra,centaur,mug,statue,building,
+             bag,carriage]
+ATTRIBUTE_NAME: [2D Boxy,3D Boxy,Round,Vert Cyl,Horiz Cyl,
+                 Occluded,Tail,Beak,Head,Ear,
+                 Snout,Nose,Mouth,Hair,Face,Eye,Torso,Hand,Arm,Leg,
+                 Foot/Shoe,Wing,Propeller,Jet engine,Window,Row Wind,Wheel,Door,Headlight,Taillight,
+                 Side mirror,Exhaust,Pedal,Handlebars,Engine,Sail,Mast,Text,Label,Furn. Leg,
+                 Furn. Back,Furn. Seat,Furn. Arm,Horn,Rein,Saddle,Leaf,Flower,Stem/Trunk,Pot,
+                 Screen,Skin,Metal,Plastic,Wood,Cloth,Furry,Glass,Feather,Wool,
+                 Clear,Shiny,Vegetation,Leather]
+
+CKPT_SAVE_PATH: ./checkpoint/
+EVALUATION_SAVE_PATH: ./results/
