@@ -141,8 +141,8 @@ def main(args):
     train_dataset = Dataset(dataset_root=cfg.DATASET_ROOT,dataset_list=cfg.DATASET_LIST_TRAIN,class_name=cfg.CLASS_NAME, strategy=cfg.STRATEGY, data_type="train")
     train_loader = DataLoader(train_dataset,batch_size=cfg.BATCH_SIZE,shuffle=True)
 
-    # validation_dataset = Dataset(dataset_root=cfg.DATASET_ROOT,dataset_list=cfg.DATASET_LIST_TEST,class_name=cfg.CLASS_NAME, strategy=cfg.STRATEGY, data_type="test")
-    # validation_loader = DataLoader(validation_dataset,batch_size=cfg.BATCH_SIZE,shuffle=False)
+    validation_dataset = Dataset(dataset_root=cfg.DATASET_ROOT,dataset_list=cfg.DATASET_LIST_TEST,class_name=cfg.CLASS_NAME, strategy=cfg.STRATEGY, data_type="test")
+    validation_loader = DataLoader(validation_dataset,batch_size=cfg.BATCH_SIZE,shuffle=False)
 
     model = define_backbone(cfg.BACKBONE, cfg.CLASS_NUM, cfg.ATTRIBUTE_NUM, cfg.STRATEGY ,cfg.PRETRAINED)
 
@@ -193,7 +193,7 @@ def main(args):
                 )
 
         if i % 10 == 0:
-            TPFN(model, train_loader, cfg.ATTRIBUTE_NUM, cfg.ATTRIBUTE_NAME, 0.5, device)
+            TPFN(model, validation_loader, cfg.ATTRIBUTE_NUM, cfg.ATTRIBUTE_NAME, 0.5, device)
             torch.save(model.state_dict(), os.path.join(model_save_path,"backbone-item-epoch-"+str(i)+'.pth'))
 
 

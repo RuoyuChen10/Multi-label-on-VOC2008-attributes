@@ -228,7 +228,7 @@ def parse_args():
                         help='GPU device')
     parser.add_argument('--Test-model', type=str, 
     # default="./checkpoint/backbone-item-epoch-990.pth",
-    default="./checkpoint/2021-07-26-00:04:56/backbone-item-epoch-500.pth",
+    default="./checkpoint/Save_ckpt_1/backbone-item-epoch-500.pth",
                         help='Model weight for testing.')
     args = parser.parse_args()
 
