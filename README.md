@@ -115,7 +115,7 @@ python evaluation.py \
 +-----------------+--------+-------+--------+--------+-----------+--------+--------+
 ```
 
-## 6. Get the Relation Between Objects
+## 6. Get the Relation Between Objects by Attribute Representation
 
 ```
 cd ./other_process
