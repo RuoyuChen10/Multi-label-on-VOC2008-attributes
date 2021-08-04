@@ -35,7 +35,6 @@ POS_LOSS_WEIGHT: [
   1.45, 8.74, 12.49, 24.67, 53.19,
   71.05, 5.17, 28.49, 451.86
 ]
-# GPU_DEVICE: "0,1,2,3"
 
 DATASET_ROOT: /exdata/RuoyuChen/describing_objects_by_their_attributes/Pascal_Dataset/JPEGImages
 DATASET_LIST_TRAIN: /exdata/RuoyuChen/describing_objects_by_their_attributes/attribute_data/apascal_train.txt

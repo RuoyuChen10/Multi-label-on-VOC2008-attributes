@@ -114,3 +114,21 @@ python evaluation.py \
 |   63. Leather   |  10.0  |  6.0  | 100.0  | 6239.0 |   0.0909  | 0.6250 | 0.9833 |
 +-----------------+--------+-------+--------+--------+-----------+--------+--------+
 ```
+
+## 6. Get the Relation Between Objects
+
+```
+cd ./other_process
+```
+
+First, get the attribute representation of each class, don't forget change the variable `TRAIN_PATH`, `TEST_PATH` and `IMAGE_PATH` in the code:
+
+```
+python compute_presentation.py
+```
+
+Then, compute the relationship matrix:
+
+```
+python compute_distance.py --n-clusters <clusters number>
+```

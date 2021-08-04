@@ -26,3 +26,5 @@ class MultiClassLoss(nn.Module):
             loss += criterion_loss
             #loss_information.append(criterion_loss.data.item())
         return loss#,loss_information
+
+        
