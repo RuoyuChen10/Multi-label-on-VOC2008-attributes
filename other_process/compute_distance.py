@@ -66,7 +66,7 @@ def main(args):
 
 
 def parse_args():
-    parser = argparse.ArgumentParser(description='VOC 2008 datasets, attributes prediction')
+    parser = argparse.ArgumentParser(description='VOC 2008 datasets, attributes relationship.')
     parser.add_argument('--split', type=str,
         default="split1",
         choices=["split1","split2","split3"],
