@@ -130,5 +130,5 @@ python compute_presentation.py
 Then, compute the relationship matrix:
 
 ```
-python compute_distance.py --n-clusters <clusters number>
+python compute_distance.py --n-clusters <clusters number> --split split1
 ```
