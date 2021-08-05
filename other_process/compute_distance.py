@@ -8,10 +8,11 @@ import os
 import torch
 import math
 
-CLASS_NAME = np.array(["aeroplane","bicycle","bird","boat","bottle",
-             "bus","car","cat","chair","cow",
-             "diningtable","dog","horse","motorbike","person",
-             "pottedplant","sheep","sofa","train","tvmonitor"])
+CLASS_NAME_SPLIT1 = np.array(["aeroplane","bicycle","boat","bottle","car",
+                              "cat","chair","diningtable","dog","horse",
+                              "person","pottedplant","sheep","train","tvmonitor",
+                              "bird","bus","cow","motorbike","sofa"])
+
 FEATURE_RP = "./feature_representation/VOC_2008"
 
 def mkdir(name):
@@ -24,6 +25,10 @@ def mkdir(name):
 
 def main(args):
     cluster_centers = []
+    # Choose class index
+    if args.split == "split1":
+        CLASS_NAME = CLASS_NAME_SPLIT1
+    
     for class_name in CLASS_NAME:
         # Get the path
         feature_name = os.path.join(FEATURE_RP, class_name+".npy")
@@ -54,16 +59,20 @@ def main(args):
                 confusion_matrix[i][j] = similarity.item()
 
                 # print("i: {}, j: {}".format(i,j+i+1))
-    mkdir("./cluster_txt")
-    np.savetxt("./cluster_txt/cluster_"+str(args.n_clusters)+".txt", confusion_matrix)
-    mkdir("./cluster_matrix")
-    np.save("./cluster_matrix/cluster_"+str(args.n_clusters)+".npy", confusion_matrix)
+    mkdir(os.path.join("./cluster_txt/", args.split))
+    np.savetxt(os.path.join("./cluster_txt/", args.split) + "/cluster_"+str(args.n_clusters)+".txt", confusion_matrix)
+    mkdir(os.path.join("./cluster_matrix", args.split))
+    np.save(os.path.join("./cluster_matrix", args.split) + "/cluster_"+str(args.n_clusters)+".npy", confusion_matrix)
 
 
 def parse_args():
     parser = argparse.ArgumentParser(description='VOC 2008 datasets, attributes prediction')
+    parser.add_argument('--split', type=str,
+        default="split1",
+        choices=["split1","split2","split3"],
+        help='which set.')
     parser.add_argument('--n-clusters', type=int,
-        default=2,
+        default=1,
         help='Clustering number.')
     
     args = parser.parse_args()
