@@ -8,14 +8,16 @@ VOC2008: [https://www.kaggle.com/sulaimannadeem/pascal-voc-2008](https://www.kag
 
 Attribute dataset: [https://vision.cs.uiuc.edu/attributes/](https://vision.cs.uiuc.edu/attributes/)
 
-> @inproceedings{farhadi2009describing,\
-    title={Describing objects by their attributes},\
-    author={Farhadi, Ali and Endres, Ian and Hoiem, Derek and Forsyth, David},\
-    booktitle={2009 IEEE conference on computer vision and pattern recognition},\
-    pages={1778--1785},\
-    year={2009},\
-    organization={IEEE}\
+```angular2html
+@inproceedings{farhadi2009describing,
+    title={Describing objects by their attributes},
+    author={Farhadi, Ali and Endres, Ian and Hoiem, Derek and Forsyth, David},
+    booktitle={2009 IEEE conference on computer vision and pattern recognition},
+    pages={1778--1785},
+    year={2009},
+    organization={IEEE}
 }
+```
 
 ## 2. Configuration
 
