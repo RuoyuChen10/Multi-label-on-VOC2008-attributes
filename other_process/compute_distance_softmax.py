@@ -33,6 +33,8 @@ def mkdir(name):
         os.makedirs(name)
 
 def main(args):
+    softmax = torch.nn.Softmax(dim=1)
+
     cluster_centers = []
     # Choose class index
     if args.split == "split1":
@@ -56,10 +58,12 @@ def main(args):
         
         del kmeans
     
-    confusion_matrix = np.zeros((20,20))
+    # confusion_matrix = np.zeros((20,20))
+    confusion_matrix = []
     
     with torch.no_grad():
         for i in range(len(CLASS_NAME)):
+            confusion_matrix_row = []
             for j in range(len(CLASS_NAME)):
                 x_norm = torch.nn.functional.normalize(torch.Tensor(cluster_centers[i]), p=2, dim=1)
                 y_norm = torch.nn.functional.normalize(torch.Tensor(cluster_centers[j]), p=2, dim=1)
@@ -69,13 +73,26 @@ def main(args):
                 similarity = 1 - torch.arccos(similarity) /  math.pi
                 similarity = torch.mean(similarity)
                 
-                confusion_matrix[i][j] = similarity.item()
+                if i!=j:
+                    confusion_matrix_row.append(similarity.item())
+            confusion_matrix.append(confusion_matrix_row)
+
+    confusion_matrix = softmax(torch.Tensor(confusion_matrix))
+    confusion_matrix_ = confusion_matrix.numpy()
+
+    confusion_matrix = np.zeros((20,20))
+    for i in range(len(CLASS_NAME)):
+        for j in range(len(CLASS_NAME)):
+            if j<i:
+                confusion_matrix[i][j]=confusion_matrix_[i][j]
+            if j>i:
+                confusion_matrix[i][j]=confusion_matrix_[i][j-1]
 
                 # print("i: {}, j: {}".format(i,j+i+1))
     mkdir(os.path.join("./cluster_txt/", args.split))
-    np.savetxt(os.path.join("./cluster_txt/", args.split) + "/cluster_"+str(args.n_clusters)+".txt", confusion_matrix)
+    np.savetxt(os.path.join("./cluster_txt/", args.split) + "/cluster_softmax_"+str(args.n_clusters)+".txt", confusion_matrix)
     mkdir(os.path.join("./cluster_matrix", args.split))
-    np.save(os.path.join("./cluster_matrix", args.split) + "/cluster_"+str(args.n_clusters)+".npy", confusion_matrix)
+    np.save(os.path.join("./cluster_matrix", args.split) + "/cluster_softmax_"+str(args.n_clusters)+".npy", confusion_matrix)
 
 
 def parse_args():
@@ -85,7 +102,7 @@ def parse_args():
         choices=["split1","split2","split3"],
         help='which set.')
     parser.add_argument('--n-clusters', type=int,
-        default=7,
+        default=1,
         help='Clustering number.')
     
     args = parser.parse_args()

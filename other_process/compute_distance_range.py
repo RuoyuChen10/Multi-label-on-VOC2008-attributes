@@ -72,10 +72,16 @@ def main(args):
                 confusion_matrix[i][j] = similarity.item()
 
                 # print("i: {}, j: {}".format(i,j+i+1))
+    confusion_matrix -= confusion_matrix.min()
+    confusion_matrix /= confusion_matrix.max()
+    confusion_matrix *= (1-args.min)
+    confusion_matrix += args.min
+
+    
     mkdir(os.path.join("./cluster_txt/", args.split))
-    np.savetxt(os.path.join("./cluster_txt/", args.split) + "/cluster_"+str(args.n_clusters)+".txt", confusion_matrix)
+    np.savetxt(os.path.join("./cluster_txt/", args.split) + "/cluster_min_"+str(args.min)+'_clusters_'+str(args.n_clusters)+".txt", confusion_matrix)
     mkdir(os.path.join("./cluster_matrix", args.split))
-    np.save(os.path.join("./cluster_matrix", args.split) + "/cluster_"+str(args.n_clusters)+".npy", confusion_matrix)
+    np.save(os.path.join("./cluster_matrix", args.split) + "/cluster_min_"+str(args.min)+'_clusters_'+str(args.n_clusters)+".npy", confusion_matrix)
 
 
 def parse_args():
@@ -84,8 +90,11 @@ def parse_args():
         default="split1",
         choices=["split1","split2","split3"],
         help='which set.')
+    parser.add_argument('--min', type=float,
+        default=0.2,
+        help='Normalize.')
     parser.add_argument('--n-clusters', type=int,
-        default=7,
+        default=1,
         help='Clustering number.')
     
     args = parser.parse_args()
