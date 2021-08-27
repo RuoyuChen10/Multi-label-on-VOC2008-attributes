@@ -7,7 +7,7 @@ Chinese can refer my csdn blog [https://blog.csdn.net/Exploer_TRY/article/detail
 VOC2008: [https://www.kaggle.com/sulaimannadeem/pascal-voc-2008](https://www.kaggle.com/sulaimannadeem/pascal-voc-2008)
 
 Attribute dataset: [https://vision.cs.uiuc.edu/attributes/](https://vision.cs.uiuc.edu/attributes/)
-
+ 
 ```angular2html
 @inproceedings{farhadi2009describing,
     title={Describing objects by their attributes},
