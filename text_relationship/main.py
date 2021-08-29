@@ -177,25 +177,6 @@ def main(args):
 
         assert word_vec.shape[0]==20
 
-        # word_vec_norm = torch.nn.functional.normalize(torch.Tensor(word_vec), p=2, dim=1)
-
-        # similarity = torch.mm(word_vec_norm, word_vec_norm.T)
-        
-        # # Ensure the dimension is true.
-        # assert similarity.shape == torch.Size([len(CLASS_NAME),len(CLASS_NAME)])
-
-        # similarity = torch.clamp(similarity,-1,1)   # prevent nan
-        # similarity = 1 - torch.arccos(similarity) /  math.pi
-
-        # # Ensure the dimension is true.
-        # assert similarity.shape == torch.Size([len(CLASS_NAME),len(CLASS_NAME)])
-
-        # # Save
-        # mkdir(os.path.join("./text_relationship_txt/", args.split))
-        # np.savetxt(os.path.join("./text_relationship_txt/", args.split) + "/" + args.method + "-" + args.split+".txt", similarity)
-        # mkdir(os.path.join("./text_relationship_matrix", args.split))
-        # np.save(os.path.join("./text_relationship_matrix", args.split) + "/"+args.method+"-"+args.split+".npy", similarity)
-
     elif args.method == "attribute_word":
         # Attribute word embedding
         attribute_word_embedding = get_attribute_vector(embeddings_dict)
