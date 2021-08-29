@@ -9,9 +9,16 @@ The text embedding we will use GloVe, see [github](https://github.com/stanfordnl
 
 download pre-trained word vectors, I choose Common Crawl, which should exist 2.03 GB space free.
 
-```
+```shell
 weget https://nlp.stanford.edu/data/glove.840B.300d.zip
 unzip glove.840B.300d.zip
 cd ..
 ```
+
+Then, run demo to get the relationship matrix:
+
+```shell
+python main.py --split <which split> --method <which method>
+```
+
 
